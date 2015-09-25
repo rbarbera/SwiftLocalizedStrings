@@ -36,10 +36,13 @@ With this special case for the `CustomStringConvertible` protocol, we can especi
 Thankfully _there is a protocol for this_ in the standard library. This protocol is `RawRepresentable`. With this little protocol in hand, we can write our extension to give a default implementation to our phantom protocol:
 */
 
+class BundleMarker {}
+
 extension LocalizedEnum where Self: RawRepresentable, Self.RawValue == String {
     var description : String  {
         let tableName = "\(self.dynamicType)"
-        return NSLocalizedString(self.rawValue, tableName: tableName, bundle: NSBundle.mainBundle(), value: "", comment: "")
+        let bundle =  NSBundle(forClass: BundleMarker.self)
+        return NSLocalizedString(self.rawValue, tableName: tableName, bundle: bundle, value: "", comment: "")
     }
 }
 
