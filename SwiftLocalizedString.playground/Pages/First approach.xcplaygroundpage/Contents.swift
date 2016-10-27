@@ -26,8 +26,8 @@ Now we can implement the `CustomStringConvertible` protocol to make transparent 
 
 extension Options: CustomStringConvertible {
     var description : String  {
-        let tableName = "\(self.dynamicType)"
-        return NSLocalizedString(self.rawValue, tableName: tableName, bundle: NSBundle.mainBundle(), value: "", comment: "")
+        let tableName = "\(type(of: self))"
+        return NSLocalizedString(self.rawValue, tableName: tableName, bundle: Bundle.main, value: "", comment: "")
     }
 }
 
