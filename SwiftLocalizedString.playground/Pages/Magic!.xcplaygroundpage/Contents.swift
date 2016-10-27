@@ -12,15 +12,15 @@ enum Login: String { case Name }
 
 extension Options: CustomStringConvertible {
     var description : String  {
-        let tableName = "\(self.dynamicType)"
-        return NSLocalizedString(self.rawValue, tableName: tableName, bundle: NSBundle.mainBundle(), value: "", comment: "")
+        let tableName = "\(type(of: self))"
+        return NSLocalizedString(self.rawValue, tableName: tableName, bundle: Bundle.main, value: "", comment: "")
     }
 }
 
 extension Login: CustomStringConvertible {
     var description : String  {
-        let tableName = "\(self.dynamicType)"
-        return NSLocalizedString(self.rawValue, tableName: tableName, bundle: NSBundle.mainBundle(), value: "", comment: "")
+        let tableName = "\(type(of: self))"
+        return NSLocalizedString(self.rawValue, tableName: tableName, bundle: Bundle.main, value: "", comment: "")
     }
 }
 
@@ -40,8 +40,8 @@ class BundleMarker {}
 
 extension LocalizedEnum where Self: RawRepresentable, Self.RawValue == String {
     var description : String  {
-        let tableName = "\(self.dynamicType)"
-        let bundle =  NSBundle(forClass: BundleMarker.self)
+        let tableName = "\(type(of: self))"
+        let bundle =  Bundle(for: BundleMarker.self)
         return NSLocalizedString(self.rawValue, tableName: tableName, bundle: bundle, value: "", comment: "")
     }
 }
